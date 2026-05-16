@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hay Chaufa - Recetas</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Eater&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background-image:url('https://static.wixstatic.com/media/7d9a29_02553b2cd0a24bce9595c9453c60e1a2~mv2.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+  color:white;
+}
+
+/* =========================
+WRAPPER
+========================= */
+
+.wrapper{
+  width:100%;
+  max-width:1450px;
+  margin:auto;
+  padding:20px;
+}
+
+/* =========================
+HEADER
+========================= */
+
+header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+
+.logo{
+  width:170px;
+  max-width:100%;
+  height:auto;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.nav-btn{
+  text-decoration:none;
+  border:2px solid white;
+  color:white;
+  padding:12px 22px;
+  border-radius:40px;
+  font-weight:700;
+  font-size:14px;
+  transition:.3s;
+  cursor:pointer;
+  text-align:center;
+}
+
+.nav-btn:hover{
+  background:rgba(255,255,255,.2);
+}
+
+.nav-btn.active{
+  background:rgba(255,255,255,.3);
+  border-color:transparent;
+}
+
+.btn-yellow{
+  background:#e9b935;
+  color:#5a1800;
+  border:none;
+  border-radius:40px;
+  padding:14px 24px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn-yellow:hover{
+  transform:scale(1.05);
+}
+
+/* =========================
+RECETAS CONTAINER
+========================= */
+
+.recetas-container{
+  width:100%;
+}
+
+/* =========================
+HERO BOX
+========================= */
+
+.hero-box{
+  width:100%;
+  background:rgba(184,85,26,.9);
+  padding:35px;
+  border-radius:30px;
+  margin-bottom:30px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.hero-box h1{
+  font-family:'Eater',cursive;
+  font-size:60px;
+  margin-bottom:15px;
+  line-height:1.1;
+}
+
+.hero-box p{
+  font-size:18px;
+  line-height:1.7;
+  font-weight:600;
+}
+
+/* =========================
+LOWER CONTENT
+========================= */
+
+.lower-content{
+  width:100%;
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:30px;
+  align-items:end;
+}
+
+.left-section{
+  width:100%;
+}
+
+/* =========================
+SEARCH BAR
+========================= */
+
+.search-bar-row{
+  width:100%;
+  display:flex;
+  gap:15px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+}
+
+.search-input-wrapper{
+  flex:1;
+  min-width:260px;
+  display:flex;
+  align-items:center;
+  border:2px solid white;
+  border-radius:40px;
+  padding:12px 20px;
+}
+
+.search-input-wrapper input{
+  width:100%;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:white;
+  font-size:15px;
+  font-weight:700;
+}
+
+.search-input-wrapper input::placeholder{
+  color:white;
+}
+
+.search-icon{
+  font-size:18px;
+}
+
+.filter-btn{
+  border:2px solid white;
+  background:transparent;
+  color:white;
+  padding:12px 22px;
+  border-radius:30px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.filter-btn:hover{
+  background:rgba(255,255,255,.2);
+}
+
+/* =========================
+SLIDER
+========================= */
+
+.slider-wrapper{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.cards-slider{
+  width:100%;
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  padding:10px 5px;
+}
+
+.cards-slider::-webkit-scrollbar{
+  display:none;
+}
+
+.slider-btn{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:2px solid white;
+  background:rgba(255,255,255,.2);
+  color:white;
+  cursor:pointer;
+  flex-shrink:0;
+  font-size:20px;
+  transition:.3s;
+}
+
+.slider-btn:hover{
+  background:rgba(255,255,255,.4);
+  transform:scale(1.08);
+}
+
+/* =========================
+CARDS
+========================= */
+
+.recipe-card{
+  min-width:280px;
+  background:white;
+  border-radius:28px;
+  overflow:hidden;
+  color:#000;
+  flex-shrink:0;
+  box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+
+.recipe-card img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+}
+
+.card-body{
+  padding:18px;
+}
+
+.card-body h4{
+  font-size:20px;
+  margin-bottom:12px;
+  font-weight:900;
+}
+
+.card-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:15px;
+  color:#555;
+  font-weight:600;
+}
+
+.heart-icon{
+  cursor:pointer;
+  transition:.3s;
+}
+
+.heart-icon:hover{
+  color:red;
+}
+
+/* =========================
+CHEF
+========================= */
+
+.chef-col{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+}
+
+.chef-col img{
+  width:100%;
+  max-width:420px;
+}
+
+/* =========================
+MODAL
+========================= */
+
+.modal-bg{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(8px);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.modal-content{
+  background:white;
+  color:#333;
+  width:90%;
+  max-width:500px;
+  padding:40px;
+  border-radius:30px;
+  position:relative;
+}
+
+.modal-content h2{
+  text-align:center;
+  margin-bottom:25px;
+  color:#8b0000;
+}
+
+.close-card{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.input-group{
+  margin-bottom:20px;
+}
+
+.input-group label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:700;
+}
+
+.input-group input,
+.input-group textarea{
+  width:100%;
+  padding:15px;
+  border-radius:15px;
+  border:2px solid #eee;
+  outline:none;
+}
+
+.btn-wsp{
+  width:100%;
+  padding:18px;
+  border:none;
+  border-radius:15px;
+  background:#25D366;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* =========================
+TABLET
+========================= */
+
+@media(max-width:1100px){
+
+  .lower-content{
+    grid-template-columns:1fr;
+  }
+
+  .chef-col{
+    justify-content:center;
+  }
+
+  .chef-col img{
+    max-width:350px;
+  }
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .wrapper{
+    padding:15px;
+  }
+
+  header{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .logo{
+    width:150px;
+  }
+
+  .nav-links{
+    width:100%;
+    flex-direction:column;
+  }
+
+  .nav-btn,
+  .btn-yellow{
+    width:100%;
+    max-width:350px;
+  }
+
+  .hero-box{
+    padding:25px;
+    border-radius:25px;
+  }
+
+  .hero-box h1{
+    font-size:38px;
+  }
+
+  .hero-box p{
+    font-size:15px;
+  }
+
+  .search-bar-row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .search-input-wrapper{
+    width:100%;
+    min-width:unset;
+  }
+
+  .filter-btn{
+    width:100%;
+  }
+
+  .slider-wrapper{
+    gap:10px;
+  }
+
+  .slider-btn{
+    width:42px;
+    height:42px;
+    font-size:16px;
+  }
+
+  .recipe-card{
+    min-width:240px;
+  }
+
+  .recipe-card img{
+    height:170px;
+  }
+
+  .chef-col img{
+    max-width:280px;
+  }
+
+}
+
+/* =========================
+SMALL MOBILE
+========================= */
+
+@media(max-width:480px){
+
+  .hero-box h1{
+    font-size:30px;
+  }
+
+  .recipe-card{
+    min-width:220px;
+  }
+
+  .card-body h4{
+    font-size:18px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<header>
+
+  <img
+    src="https://static.wixstatic.com/media/7d9a29_b62d70900dc44abca2fb50b7f03b6780~mv2.png"
+    alt="Logo"
+    class="logo"
+  >
+
+  <nav class="nav-links">
+
+    <a
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1';"
+      class="nav-btn"
+    >
+      Home
+    </a>
+
+    <a
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1/t%C3%A9rminos-y-condiciones';"
+      class="nav-btn"
+    >
+      Mi Historia
+    </a>
+
+    <a
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1/pol%C3%ADtica-de-privacidad';"
+      class="nav-btn active"
+    >
+      Recetas
+    </a>
+
+    <a
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1/ruta';"
+      class="nav-btn"
+    >
+      Ruta Chifera
+    </a>
+
+    <button class="btn-yellow" onclick="openModal()">
+      Sube tu Receta
+    </button>
+
+  </nav>
+
+</header>
+
+<div class="recetas-container">
+
+  <div class="hero-box">
+
+    <h1>LA COCINA BRAVA</h1>
+
+    <p>
+      "Cada parada me deja una receta distinta.
+      Algunas las aprendí mirando, otras me las enseñaron cocineros que no usan medidas.
+      Aquí guardo esas versiones de chaufa que cuentan historias desde el wok."
+    </p>
+
+  </div>
+
+  <div class="lower-content">
+
+    <div class="left-section">
+
+      <div class="search-bar-row">
+
+        <div class="search-input-wrapper">
+          <input type="text" placeholder="BUSCAR RECETAS">
+          <span class="search-icon">🔍</span>
+        </div>
+
+        <button class="filter-btn">Clásico</button>
+        <button class="filter-btn">Fusión</button>
+        <button class="filter-btn">Andino</button>
+
+      </div>
+
+      <div class="slider-wrapper">
+
+        <button class="slider-btn" id="prevBtn">
+          &#10094;
+        </button>
+
+        <div class="cards-slider" id="slider">
+
+          <div class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">
+            <div class="card-body">
+              <h4>Chaufa Amazónico</h4>
+              <div class="card-footer">
+                <span>Por Ana</span>
+                <span><span class="heart-icon">♡</span> 120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">
+            <div class="card-body">
+              <h4>Chaufa Andino</h4>
+              <div class="card-footer">
+                <span>Por Paula</span>
+                <span><span class="heart-icon">♡</span> 203</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">
+            <div class="card-body">
+              <h4>Chaufa Fusión</h4>
+              <div class="card-footer">
+                <span>Por Gio</span>
+                <span><span class="heart-icon">♡</span> 85</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">
+            <div class="card-body">
+              <h4>Chaufa de Mariscos</h4>
+              <div class="card-footer">
+                <span>Por Carlos</span>
+                <span><span class="heart-icon">♡</span> 315</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="slider-btn" id="nextBtn">
+          &#10095;
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="chef-col">
+
+      <img
+        src="https://static.wixstatic.com/media/7d9a29_68b0e695d1d549c68b9d47e58aa9eb36~mv2.png"
+        alt="Chef"
+      >
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-bg" id="modalForm">
+
+  <div class="modal-content">
+
+    <span class="close-card" onclick="closeModal()">
+      &times;
+    </span>
+
+    <h2>¡Comparte tu Sazón!</h2>
+
+    <div class="input-group">
+      <label>Nombre Completo</label>
+      <input type="text" id="nombre" placeholder="Tu nombre...">
+    </div>
+
+    <div class="input-group">
+      <label>Carrera</label>
+      <input type="text" id="carrera" placeholder="¿Qué estudias?">
+    </div>
+
+    <div class="input-group">
+      <label>Tu Receta Estelar</label>
+      <textarea id="receta" rows="4" placeholder="Cuéntanos el secreto del chaufa..."></textarea>
+    </div>
+
+    <button class="btn-wsp" onclick="enviarWSP()">
+      Enviar por WhatsApp
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+/* =========================
+MODAL
+========================= */
+
+const numeroWhatsApp = "51987654321";
+const modal = document.getElementById('modalForm');
+
+function openModal(){
+  modal.style.display='flex';
+}
+
+function closeModal(){
+  modal.style.display='none';
+}
+
+function enviarWSP(){
+
+  const nombre=document.getElementById('nombre').value;
+  const carrera=document.getElementById('carrera').value;
+  const receta=document.getElementById('receta').value;
+
+  if(!nombre || !carrera || !receta){
+    alert("Por favor, llena todos los campos.");
+    return;
+  }
+
+  const texto =
+  `¡Hola Chaufero Errante! 🥘
+
+Mi nombre es *${nombre}* y estudio *${carrera}*.
+
+Aquí te traigo mi receta:
+${receta}`;
+
+  const url =
+  `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+
+  window.open(url,'_blank');
+
+  closeModal();
+
+}
+
+window.onclick=function(event){
+  if(event.target==modal){
+    closeModal();
+  }
+}
+
+/* =========================
+SLIDER
+========================= */
+
+const slider=document.getElementById('slider');
+const prevBtn=document.getElementById('prevBtn');
+const nextBtn=document.getElementById('nextBtn');
+
+prevBtn.addEventListener('click',()=>{
+  slider.scrollBy({
+    left:-320,
+    behavior:'smooth'
+  });
+});
+
+nextBtn.addEventListener('click',()=>{
+  slider.scrollBy({
+    left:320,
+    behavior:'smooth'
+  });
+});
+
+</script>
+
+</body>
+</html>

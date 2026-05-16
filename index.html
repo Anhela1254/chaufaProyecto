@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>El Chaufero Errante</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Eater&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background-image:url('https://static.wixstatic.com/media/7d9a29_02553b2cd0a24bce9595c9453c60e1a2~mv2.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+  color:white;
+  min-height:100vh;
+}
+
+/* =========================
+WRAPPER
+========================= */
+
+.wrapper{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
+  padding:20px;
+}
+
+/* =========================
+HEADER
+========================= */
+
+header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.logo{
+  width:180px;
+  max-width:100%;
+  height:auto;
+}
+
+/* =========================
+MENU
+========================= */
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.nav-links a{
+  text-decoration:none;
+}
+
+.nav-btn{
+  color:white;
+  border:2px solid white;
+  padding:12px 22px;
+  border-radius:40px;
+  font-weight:700;
+  font-size:14px;
+  transition:.3s;
+  cursor:pointer;
+  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  background:transparent;
+}
+
+.nav-btn:hover{
+  background:rgba(255,255,255,.18);
+  transform:translateY(-2px);
+}
+
+.active{
+  background:rgba(255,255,255,.25);
+}
+
+.btn-yellow{
+  background:#e9b935;
+  border:none;
+  color:#5a1800;
+  padding:14px 24px;
+  border-radius:40px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.3s;
+  min-height:50px;
+  font-size:14px;
+}
+
+.btn-yellow:hover{
+  transform:scale(1.04);
+}
+
+/* =========================
+MAIN
+========================= */
+
+.main-content{
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:35px;
+  align-items:center;
+  margin-top:40px;
+}
+
+/* =========================
+TEXT BOX
+========================= */
+
+.text-box{
+  width:100%;
+  background:rgba(85,21,15,.88);
+  padding:40px;
+  border-radius:35px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.text-box h1{
+  font-family:'Eater',cursive;
+  font-size:48px;
+  line-height:1.1;
+  margin-bottom:25px;
+}
+
+.text-box p{
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:22px;
+}
+
+.btn-brown{
+  width:100%;
+  background:#b4712e;
+  border:none;
+  color:white;
+  padding:18px;
+  border-radius:40px;
+  font-size:18px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn-brown:hover{
+  background:#d98938;
+}
+
+/* =========================
+SARTEN
+========================= */
+
+.sarten-container{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.sarten-img{
+  width:100%;
+  max-width:360px;
+  animation:floating 3s ease-in-out infinite;
+}
+
+@keyframes floating{
+  0%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-12px);
+  }
+  100%{
+    transform:translateY(0);
+  }
+}
+
+/* =========================
+RIGHT SIDE
+========================= */
+
+.right-side{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:25px;
+}
+
+.chico-img{
+  width:100%;
+  max-width:320px;
+  border-radius:15px;
+}
+
+.explore-card{
+  width:100%;
+  max-width:320px;
+  background:#aa5b00;
+  border-radius:25px;
+  padding:30px;
+  position:relative;
+  text-align:center;
+}
+
+.explore-card h3{
+  font-size:28px;
+  line-height:1.3;
+}
+
+.close-card{
+  position:absolute;
+  top:10px;
+  right:16px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* =========================
+MODAL
+========================= */
+
+.modal-bg{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(6px);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  padding:20px;
+}
+
+.modal-content{
+  width:100%;
+  max-width:500px;
+  background:white;
+  color:#333;
+  padding:35px;
+  border-radius:30px;
+  position:relative;
+}
+
+.modal-content h2{
+  text-align:center;
+  margin-bottom:25px;
+  color:#8b0000;
+}
+
+.input-group{
+  margin-bottom:18px;
+}
+
+.input-group label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:700;
+}
+
+.input-group input,
+.input-group textarea{
+  width:100%;
+  padding:15px;
+  border-radius:15px;
+  border:2px solid #eee;
+  font-size:16px;
+  outline:none;
+}
+
+.btn-wsp{
+  width:100%;
+  background:#25D366;
+  color:white;
+  border:none;
+  padding:18px;
+  border-radius:15px;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* =========================
+TABLET
+========================= */
+
+@media(max-width:1024px){
+
+  .main-content{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .text-box{
+    max-width:700px;
+    margin:auto;
+  }
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .wrapper{
+    padding:15px;
+  }
+
+  header{
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  .logo{
+    width:150px;
+  }
+
+  .nav-links{
+    width:100%;
+    flex-direction:column;
+  }
+
+  .nav-links a{
+    width:100%;
+    display:flex;
+    justify-content:center;
+  }
+
+  .nav-btn,
+  .btn-yellow{
+    width:100%;
+    max-width:350px;
+  }
+
+  .text-box{
+    padding:25px;
+    border-radius:25px;
+  }
+
+  .text-box h1{
+    font-size:34px;
+  }
+
+  .text-box p{
+    font-size:16px;
+    line-height:1.7;
+  }
+
+  .btn-brown{
+    font-size:16px;
+    padding:16px;
+  }
+
+  .sarten-img{
+    max-width:260px;
+  }
+
+  .explore-card h3{
+    font-size:22px;
+  }
+
+  .modal-content{
+    padding:25px;
+  }
+
+}
+
+@media(max-width:480px){
+
+  .text-box h1{
+    font-size:28px;
+  }
+
+  .text-box p{
+    font-size:15px;
+  }
+
+  .nav-btn{
+    font-size:13px;
+    padding:12px 15px;
+  }
+
+  .btn-yellow{
+    font-size:14px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<header>
+
+  <img 
+    src="https://static.wixstatic.com/media/7d9a29_b62d70900dc44abca2fb50b7f03b6780~mv2.png"
+    class="logo"
+    alt="Logo"
+  >
+
+  <!-- MENU WIX FUNCIONAL -->
+
+  <nav class="nav-links">
+
+    <a 
+      href="https://encisocamachoangel.wixsite.com/my-site-1"
+      target="_top"
+      class="nav-btn active"
+    >
+      Home
+    </a>
+
+    <a 
+      href="https://encisocamachoangel.wixsite.com/my-site-1/t%C3%A9rminos-y-condiciones"
+      target="_top"
+      class="nav-btn"
+    >
+      Mi Historia
+    </a>
+
+    <a 
+      href="https://encisocamachoangel.wixsite.com/my-site-1/pol%C3%ADtica-de-privacidad"
+      target="_top"
+      class="nav-btn"
+    >
+      Recetas
+    </a>
+
+    <a 
+      href="https://encisocamachoangel.wixsite.com/my-site-1/ruta"
+      target="_top"
+      class="nav-btn"
+    >
+      Ruta Chifera
+    </a>
+
+    <button class="btn-yellow" onclick="openModal()">
+      Sube tu Receta
+    </button>
+
+  </nav>
+
+</header>
+
+<div class="main-content">
+
+  <!-- TEXTO -->
+
+  <div class="text-box">
+
+    <h1>EL CHAUFERO ERRANTE</h1>
+
+    <p>
+      <strong>
+      "Dicen que el chaufa se sirve en todos lados,
+      pero no todos saben vivirlo."
+      </strong>
+    </p>
+
+    <p>
+      Yo soy Peter y llevo meses recorriendo el país buscando
+      ese sabor que te hace sentir en casa.
+      Aquí guardo mis historias, recetas y hallazgos chiferos.
+    </p>
+
+    <button class="btn-brown" onclick="openModal()">
+      ENVÍAME TU RECETA
+    </button>
+
+  </div>
+
+  <!-- SARTEN -->
+
+  <div class="sarten-container">
+
+    <img
+      src="https://static.wixstatic.com/media/7d9a29_e805b83a0812448785825a33b5124797~mv2.png"
+      class="sarten-img"
+      alt="Sartén"
+    >
+
+  </div>
+
+  <!-- DERECHA -->
+
+  <div class="right-side">
+
+    <img
+      src="https://static.wixstatic.com/media/7d9a29_3ee60d250f8644c28d21e79743e8f8dc~mv2.png"
+      class="chico-img"
+      alt="Chef"
+    >
+
+    <div class="explore-card" id="exploraCard">
+
+      <span
+        class="close-card"
+        onclick="document.getElementById('exploraCard').style.display='none'"
+      >
+        ×
+      </span>
+
+      <h3>
+        EXPLORA MIS<br>
+        CONTENIDOS
+      </h3>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-bg" id="modalForm">
+
+  <div class="modal-content">
+
+    <span
+      class="close-card"
+      style="color:#333;"
+      onclick="closeModal()"
+    >
+      ×
+    </span>
+
+    <h2>¡Comparte tu Sazón!</h2>
+
+    <div class="input-group">
+      <label>Nombre Completo</label>
+      <input type="text" id="nombre">
+    </div>
+
+    <div class="input-group">
+      <label>Carrera</label>
+      <input type="text" id="carrera">
+    </div>
+
+    <div class="input-group">
+      <label>Tu Receta</label>
+      <textarea id="receta" rows="4"></textarea>
+    </div>
+
+    <button class="btn-wsp" onclick="enviarWSP()">
+      Enviar por WhatsApp
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+/* =========================
+MODAL
+========================= */
+
+const numeroWhatsApp = "51987654321";
+
+const modal = document.getElementById('modalForm');
+
+function openModal(){
+  modal.style.display = 'flex';
+}
+
+function closeModal(){
+  modal.style.display = 'none';
+}
+
+/* =========================
+WHATSAPP
+========================= */
+
+function enviarWSP(){
+
+  const nombre = document.getElementById('nombre').value.trim();
+  const carrera = document.getElementById('carrera').value.trim();
+  const receta = document.getElementById('receta').value.trim();
+
+  if(!nombre || !carrera || !receta){
+
+    alert("Completa todos los campos");
+    return;
+
+  }
+
+  const texto =
+`Hola Chaufero Errante 🥘
+
+Mi nombre es ${nombre}
+Estudio ${carrera}
+
+Mi receta:
+${receta}`;
+
+  const url =
+`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+
+  window.open(url, '_blank');
+
+  closeModal();
+
+}
+
+/* =========================
+CERRAR MODAL AFUERA
+========================= */
+
+window.addEventListener('click', function(event){
+
+  if(event.target === modal){
+
+    closeModal();
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>

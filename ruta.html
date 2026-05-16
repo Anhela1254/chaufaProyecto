@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hay Chaufa - Ruta Chifera</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Eater&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background-image:url('https://static.wixstatic.com/media/7d9a29_02553b2cd0a24bce9595c9453c60e1a2~mv2.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+  color:white;
+}
+
+/* =========================
+WRAPPER
+========================= */
+
+.wrapper{
+  width:100%;
+  max-width:1500px;
+  margin:auto;
+  padding:20px;
+}
+
+/* =========================
+HEADER
+========================= */
+
+header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+
+.logo{
+  width:180px;
+  max-width:100%;
+  height:auto;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.nav-btn{
+  text-decoration:none;
+  border:2px solid white;
+  color:white;
+  padding:12px 22px;
+  border-radius:40px;
+  font-weight:700;
+  font-size:14px;
+  transition:.3s;
+  cursor:pointer;
+  text-align:center;
+}
+
+.nav-btn:hover{
+  background:rgba(255,255,255,.2);
+}
+
+.nav-btn.active{
+  background:rgba(255,255,255,.3);
+  border-color:transparent;
+}
+
+.btn-yellow{
+  background:#e9b935;
+  color:#5a1800;
+  border:none;
+  border-radius:40px;
+  padding:14px 24px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn-yellow:hover{
+  transform:scale(1.04);
+}
+
+/* =========================
+CONTENIDO PRINCIPAL
+========================= */
+
+.ruta-container{
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr 1.5fr;
+  gap:30px;
+  align-items:start;
+}
+
+/* =========================
+COLUMNA MAPA
+========================= */
+
+.col-mapa{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.col-mapa h1{
+  font-family:'Eater',cursive;
+  font-size:60px;
+  line-height:1;
+  margin-bottom:30px;
+  text-shadow:2px 2px 5px rgba(0,0,0,.4);
+}
+
+.pin-wrapper{
+  width:320px;
+  height:320px;
+  background:#e9b935;
+  border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow:10px 10px 20px rgba(0,0,0,.4);
+}
+
+.map-circle{
+  width:285px;
+  height:285px;
+  border-radius:50%;
+  transform:rotate(45deg);
+  overflow:hidden;
+  border:4px solid #5a1800;
+  background:url('https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80') center/cover;
+}
+
+/* =========================
+RANKING
+========================= */
+
+.col-ranking{
+  background:rgba(70,15,0,.92);
+  border:3px solid white;
+  border-radius:30px;
+  padding:35px 30px;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+.col-ranking h2{
+  font-family:'Eater',cursive;
+  font-size:45px;
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.ranking-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.ranking-item h3{
+  font-size:22px;
+  margin-bottom:8px;
+}
+
+.stars{
+  color:#e9b935;
+  font-size:28px;
+}
+
+/* =========================
+RESEÑAS
+========================= */
+
+.col-reseñas{
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+}
+
+/* SEARCH */
+
+.search-bars{
+  display:flex;
+  gap:20px;
+  width:100%;
+}
+
+.search-box{
+  flex:1;
+  display:flex;
+  align-items:center;
+  border:2px solid white;
+  border-radius:40px;
+  padding:12px 20px;
+}
+
+.search-box input{
+  width:100%;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:white;
+  font-size:16px;
+  font-weight:700;
+}
+
+.search-box input::placeholder{
+  color:white;
+}
+
+.search-icon{
+  font-size:18px;
+}
+
+/* CARDS */
+
+.cards-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.chifa-card{
+  background:rgba(40,40,40,.92);
+  border-radius:25px;
+  padding:20px;
+  box-shadow:0 10px 20px rgba(0,0,0,.4);
+}
+
+.card-top{
+  display:flex;
+  gap:15px;
+  margin-bottom:15px;
+}
+
+.card-img-container{
+  width:40%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.card-img-container img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #e9b935;
+  margin-bottom:10px;
+}
+
+.card-img-container h4{
+  color:#e9b935;
+  font-size:14px;
+  font-weight:900;
+}
+
+.card-text{
+  width:60%;
+  font-size:13px;
+  line-height:1.5;
+  color:#eee;
+}
+
+.domes{
+  font-size:22px;
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.btn-ver{
+  width:100%;
+  background:#d89f6b;
+  color:#3b1100;
+  border:none;
+  border-radius:25px;
+  padding:12px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn-ver:hover{
+  transform:scale(1.03);
+}
+
+/* =========================
+MODAL
+========================= */
+
+.modal-bg{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(6px);
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  z-index:9999;
+}
+
+.modal-content{
+  width:100%;
+  max-width:500px;
+  background:white;
+  color:#333;
+  padding:35px;
+  border-radius:30px;
+  position:relative;
+}
+
+.modal-content h2{
+  text-align:center;
+  margin-bottom:25px;
+  color:#8b0000;
+}
+
+.close-card{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.input-group{
+  margin-bottom:18px;
+}
+
+.input-group label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:700;
+}
+
+.input-group input,
+.input-group textarea{
+  width:100%;
+  padding:15px;
+  border-radius:15px;
+  border:2px solid #eee;
+  font-size:16px;
+}
+
+.btn-wsp{
+  width:100%;
+  background:#25D366;
+  color:white;
+  border:none;
+  padding:18px;
+  border-radius:15px;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* =========================
+TABLET
+========================= */
+
+@media(max-width:1200px){
+
+  .ruta-container{
+    grid-template-columns:1fr;
+  }
+
+  .col-mapa,
+  .col-ranking,
+  .col-reseñas{
+    width:100%;
+    max-width:850px;
+    margin:auto;
+  }
+
+  .col-mapa{
+    margin-bottom:20px;
+  }
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .wrapper{
+    padding:15px;
+  }
+
+  header{
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .logo{
+    width:150px;
+  }
+
+  .nav-links{
+    width:100%;
+    flex-direction:column;
+  }
+
+  .nav-btn,
+  .btn-yellow{
+    width:100%;
+    max-width:350px;
+  }
+
+  .col-mapa h1{
+    font-size:40px;
+  }
+
+  .pin-wrapper{
+    width:240px;
+    height:240px;
+  }
+
+  .map-circle{
+    width:210px;
+    height:210px;
+  }
+
+  .col-ranking{
+    padding:25px;
+  }
+
+  .col-ranking h2{
+    font-size:34px;
+  }
+
+  .ranking-item h3{
+    font-size:18px;
+  }
+
+  .stars{
+    font-size:22px;
+  }
+
+  .search-bars{
+    flex-direction:column;
+  }
+
+  .cards-grid{
+    grid-template-columns:1fr;
+  }
+
+  .card-top{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  .card-img-container,
+  .card-text{
+    width:100%;
+  }
+
+  .card-text{
+    font-size:14px;
+  }
+
+  .modal-content{
+    padding:25px;
+  }
+
+}
+
+/* =========================
+PEQUEÑOS
+========================= */
+
+@media(max-width:480px){
+
+  .col-mapa h1{
+    font-size:32px;
+  }
+
+  .nav-btn{
+    font-size:13px;
+    padding:12px 16px;
+  }
+
+  .btn-yellow{
+    font-size:14px;
+  }
+
+  .pin-wrapper{
+    width:200px;
+    height:200px;
+  }
+
+  .map-circle{
+    width:175px;
+    height:175px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<header>
+
+  <img 
+    src="https://static.wixstatic.com/media/7d9a29_b62d70900dc44abca2fb50b7f03b6780~mv2.png"
+    alt="Logo"
+    class="logo"
+  >
+
+  <nav class="nav-links">
+
+    <a 
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1';"
+      class="nav-btn"
+    >
+      Home
+    </a>
+
+    <a 
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1/t%C3%A9rminos-y-condiciones';"
+      class="nav-btn"
+    >
+      Mi Historia
+    </a>
+
+    <a 
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1/pol%C3%ADtica-de-privacidad';"
+      class="nav-btn"
+    >
+      Recetas
+    </a>
+
+    <a 
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1/ruta';"
+      class="nav-btn active"
+    >
+      Ruta Chifera
+    </a>
+
+    <button class="btn-yellow" onclick="openModal()">
+      Sube tu Receta
+    </button>
+
+  </nav>
+
+</header>
+
+<div class="ruta-container">
+
+  <!-- MAPA -->
+
+  <div class="col-mapa">
+
+    <h1>RUTA CHIFERA</h1>
+
+    <div class="pin-wrapper">
+      <div class="map-circle"></div>
+    </div>
+
+  </div>
+
+  <!-- RANKING -->
+
+  <div class="col-ranking">
+
+    <h2>MI RANKING</h2>
+
+    <ul class="ranking-list">
+
+      <li class="ranking-item">
+        <h3>1. CHIFA IMPERIAL</h3>
+        <div class="stars">★★★★★</div>
+      </li>
+
+      <li class="ranking-item">
+        <h3>2. GRAN DRAGÓN DORADO</h3>
+        <div class="stars">★★★★★</div>
+      </li>
+
+      <li class="ranking-item">
+        <h3>3. CHIFA FÉNIX</h3>
+        <div class="stars">★★★★★</div>
+      </li>
+
+      <li class="ranking-item">
+        <h3>4. CHIFA ESTRELLA ROJA</h3>
+        <div class="stars">★★★★★</div>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <!-- RESEÑAS -->
+
+  <div class="col-reseñas">
+
+    <div class="search-bars">
+
+      <div class="search-box">
+        <input type="text" placeholder="TIPO">
+        <span class="search-icon">🔍</span>
+      </div>
+
+      <div class="search-box">
+        <input type="text" placeholder="LUGAR">
+        <span class="search-icon">🔍</span>
+      </div>
+
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- CARD -->
+
+      <div class="chifa-card">
+
+        <div class="card-top">
+
+          <div class="card-img-container">
+
+            <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80">
+
+            <h4>CHIFA PALACIO</h4>
+
+          </div>
+
+          <div class="card-text">
+
+            Parece un templo más que un restaurante.
+            El chaufa tiene ese punto entre nostalgia y soya exacta.
+
+            <br><br>
+
+            <strong>4.9/5 - Me hizo pensar en casa.</strong>
+
+          </div>
+
+        </div>
+
+        <div class="domes">🍲🍲🍲🍲</div>
+
+        <button class="btn-ver">Ver</button>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="chifa-card">
+
+        <div class="card-top">
+
+          <div class="card-img-container">
+
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80">
+
+            <h4>CHIFA KAM MEN</h4>
+
+          </div>
+
+          <div class="card-text">
+
+            El fuego nunca baja, ni el ritmo del chef.
+            Me sirvieron el chaufa más vivo que he probado.
+
+            <br><br>
+
+            <strong>4.9/5 - Por el sabor y la historia.</strong>
+
+          </div>
+
+        </div>
+
+        <div class="domes">🍲🍲🍲🍲</div>
+
+        <button class="btn-ver">Ver</button>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="chifa-card">
+
+        <div class="card-top">
+
+          <div class="card-img-container">
+
+            <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80">
+
+            <h4>CHIFA COSTASUR</h4>
+
+          </div>
+
+          <div class="card-text">
+
+            No conocía el chaufa con mariscos hasta llegar aquí.
+            El mar también tiene su wok.
+
+            <br><br>
+
+            <strong>4.8/5 - Arriesgado y honesto.</strong>
+
+          </div>
+
+        </div>
+
+        <div class="domes">🍲🍲🍲🍲</div>
+
+        <button class="btn-ver">Ver</button>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="chifa-card">
+
+        <div class="card-top">
+
+          <div class="card-img-container">
+
+            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80">
+
+            <h4>CHIFA CHIN'S</h4>
+
+          </div>
+
+          <div class="card-text">
+
+            El wok parece hablar en otro idioma.
+            Chaufa fuerte y auténtico.
+
+            <br><br>
+
+            <strong>4.9/5 - Sin pretensiones.</strong>
+
+          </div>
+
+        </div>
+
+        <div class="domes">🍲🍲🍲🍲</div>
+
+        <button class="btn-ver">Ver</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-bg" id="modalForm">
+
+  <div class="modal-content">
+
+    <span
+      class="close-card"
+      style="color:#333;"
+      onclick="closeModal()"
+    >
+      ×
+    </span>
+
+    <h2>¡Comparte tu Sazón!</h2>
+
+    <div class="input-group">
+
+      <label>Nombre Completo</label>
+
+      <input type="text" id="nombre">
+
+    </div>
+
+    <div class="input-group">
+
+      <label>Carrera</label>
+
+      <input type="text" id="carrera">
+
+    </div>
+
+    <div class="input-group">
+
+      <label>Tu Receta Estelar</label>
+
+      <textarea id="receta" rows="4"></textarea>
+
+    </div>
+
+    <button class="btn-wsp" onclick="enviarWSP()">
+      Enviar por WhatsApp
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+const numeroWhatsApp = "51987654321";
+
+const modal = document.getElementById('modalForm');
+
+function openModal(){
+  modal.style.display = 'flex';
+}
+
+function closeModal(){
+  modal.style.display = 'none';
+}
+
+function enviarWSP(){
+
+  const nombre = document.getElementById('nombre').value;
+  const carrera = document.getElementById('carrera').value;
+  const receta = document.getElementById('receta').value;
+
+  if(!nombre || !carrera || !receta){
+    alert("Completa todos los campos");
+    return;
+  }
+
+  const texto =
+`Hola Chaufero Errante 🥘
+
+Mi nombre es ${nombre}
+Estudio ${carrera}
+
+Mi receta:
+${receta}`;
+
+  const url =
+`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+
+  window.open(url,'_blank');
+
+  closeModal();
+}
+
+window.onclick = function(event){
+  if(event.target == modal){
+    closeModal();
+  }
+}
+
+</script>
+
+</body>
+</html>

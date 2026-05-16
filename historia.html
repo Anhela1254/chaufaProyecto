@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hay Chaufa - Bitácoras</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Bungee+Inline&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background-image:url('https://static.wixstatic.com/media/7d9a29_02553b2cd0a24bce9595c9453c60e1a2~mv2.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+  color:white;
+}
+
+/* =========================
+WRAPPER
+========================= */
+
+.wrapper{
+  width:100%;
+  max-width:1450px;
+  margin:auto;
+  padding:20px;
+}
+
+/* =========================
+HEADER
+========================= */
+
+header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+
+.logo{
+  width:170px;
+  max-width:100%;
+  height:auto;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.nav-btn{
+  text-decoration:none;
+  border:2px solid white;
+  color:white;
+  padding:12px 22px;
+  border-radius:40px;
+  font-weight:700;
+  font-size:14px;
+  transition:.3s;
+  cursor:pointer;
+  text-align:center;
+}
+
+.nav-btn:hover{
+  background:rgba(255,255,255,.2);
+}
+
+.nav-btn.active{
+  background:rgba(255,255,255,.3);
+  border-color:transparent;
+}
+
+.btn-yellow{
+  background:#e9b935;
+  color:#5a1800;
+  border:none;
+  border-radius:40px;
+  padding:14px 24px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn-yellow:hover{
+  transform:scale(1.04);
+}
+
+/* =========================
+MAIN CONTENT
+========================= */
+
+.main-content{
+  width:100%;
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:30px;
+  align-items:start;
+}
+
+/* =========================
+BITACORA CARD
+========================= */
+
+.bitacora-card{
+  width:100%;
+  background:rgba(184,85,26,.92);
+  border-radius:35px;
+  padding:40px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.subtitle{
+  font-weight:700;
+  font-size:18px;
+  margin-bottom:10px;
+  color:#3b1100;
+}
+
+.title{
+  font-family:'Bungee Inline',cursive;
+  font-size:52px;
+  line-height:1.2;
+  margin-bottom:25px;
+}
+
+.description{
+  font-size:17px;
+  line-height:1.8;
+  margin-bottom:35px;
+  font-weight:600;
+}
+
+/* =========================
+MEDIA ROW
+========================= */
+
+.media-row{
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:20px;
+  align-items:stretch;
+}
+
+.media-row img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.img-chef{
+  min-height:320px;
+}
+
+.video-container{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  cursor:pointer;
+  min-height:320px;
+}
+
+.video-container img{
+  transition:.3s;
+}
+
+.video-container:hover img{
+  transform:scale(1.03);
+}
+
+.play-btn{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:70px;
+  height:70px;
+  background:rgba(0,0,0,.6);
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  backdrop-filter:blur(4px);
+  transition:.3s;
+}
+
+.play-btn::after{
+  content:'';
+  width:0;
+  height:0;
+  border-style:solid;
+  border-width:12px 0 12px 20px;
+  border-color:transparent transparent transparent white;
+  margin-left:5px;
+}
+
+.video-container:hover .play-btn{
+  background:rgba(233,185,53,.9);
+}
+
+/* =========================
+SIDEBAR
+========================= */
+
+.sidebar{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.sidebar img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.btn-cronicas{
+  display:block;
+  width:100%;
+  text-align:center;
+  text-decoration:none;
+  background:#d89f6b;
+  color:#3b1100;
+  padding:18px;
+  border-radius:20px;
+  font-weight:900;
+  font-size:18px;
+  transition:.3s;
+  margin-top:10px;
+}
+
+.btn-cronicas:hover{
+  transform:translateY(-3px);
+  background:#e5b383;
+}
+
+/* =========================
+TABLET
+========================= */
+
+@media(max-width:1100px){
+
+  .main-content{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    max-width:700px;
+    margin:auto;
+  }
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .wrapper{
+    padding:15px;
+  }
+
+  header{
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .logo{
+    width:150px;
+  }
+
+  .nav-links{
+    width:100%;
+    flex-direction:column;
+  }
+
+  .nav-btn,
+  .btn-yellow{
+    width:100%;
+    max-width:350px;
+  }
+
+  .bitacora-card{
+    padding:25px;
+    border-radius:25px;
+  }
+
+  .title{
+    font-size:34px;
+  }
+
+  .subtitle{
+    font-size:15px;
+  }
+
+  .description{
+    font-size:15px;
+    line-height:1.7;
+  }
+
+  .media-row{
+    grid-template-columns:1fr;
+  }
+
+  .img-chef,
+  .video-container{
+    min-height:240px;
+  }
+
+  .sidebar img{
+    height:220px;
+  }
+
+}
+
+/* =========================
+PEQUEÑOS
+========================= */
+
+@media(max-width:480px){
+
+  .title{
+    font-size:28px;
+  }
+
+  .description{
+    font-size:14px;
+  }
+
+  .nav-btn{
+    font-size:13px;
+    padding:12px 16px;
+  }
+
+  .btn-yellow{
+    font-size:14px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<header>
+
+  <img
+    src="https://static.wixstatic.com/media/7d9a29_b62d70900dc44abca2fb50b7f03b6780~mv2.png"
+    alt="Hay Chaufa"
+    class="logo"
+  >
+
+  <nav class="nav-links">
+
+    <a
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1';"
+      class="nav-btn"
+    >
+      Home
+    </a>
+
+    <a
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1/t%C3%A9rminos-y-condiciones';"
+      class="nav-btn active"
+    >
+      Mi Historia
+    </a>
+
+    <a
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1/pol%C3%ADtica-de-privacidad';"
+      class="nav-btn"
+    >
+      Recetas
+    </a>
+
+    <a
+      href="javascript:void(0);"
+      onclick="window.top.location.href='https://encisocamachoangel.wixsite.com/my-site-1/ruta';"
+      class="nav-btn"
+    >
+      Ruta Chifera
+    </a>
+
+    <button class="btn-yellow">
+      Sube tu Receta
+    </button>
+
+  </nav>
+
+</header>
+
+<div class="main-content">
+
+  <!-- BITACORA -->
+
+  <div class="bitacora-card">
+
+    <p class="subtitle">
+      "Entrada #4 - La Victoria"
+    </p>
+
+    <h1 class="title">
+      DEL BARRIO AL PLATO
+    </h1>
+
+    <p class="description">
+
+      Entre el humo del wok y los gritos del mercado,
+      encontré a Don Julio, que lleva 30 años friendo arroz.
+
+      <br><br>
+
+      Dice que el secreto está en el fuego y en no tener miedo al ruido.
+
+      <br><br>
+
+      Comí su chaufa con pollo y cebolla china,
+      y entendí algo: el chaufa no se cocina, se conversa.
+
+    </p>
+
+    <div class="media-row">
+
+      <img
+        src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+        alt="Chef"
+        class="img-chef"
+      >
+
+      <div class="video-container">
+
+        <img
+          src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+          alt="Wok"
+        >
+
+        <div class="play-btn"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+
+  <div class="sidebar">
+
+    <img
+      src="https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+      alt="Plato 1"
+    >
+
+    <img
+      src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+      alt="Plato 2"
+    >
+
+    <img
+      src="https://canalhoreca.cl/wp-content/uploads/2024/08/Congreso-Internacional-de-Panaderia-y-Bolleria-1.jpg"
+      alt="Evento gastronómico"
+    >
+
+    <a
+      href="https://www.instagram.com/misturaperu/"
+      target="_blank"
+      class="btn-cronicas"
+    >
+      MIS CRÓNICAS DE VIAJE →
+    </a>
+
+  </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
